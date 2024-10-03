@@ -6,58 +6,38 @@ import useAxiosSecure from "../../../../Components/Hooks/useAxiosSecure/useAxios
 import LoadingSpinner from "../../../../Components/Shared/LoadingSpiner/LoadingSpinner";
 
 const Success = () => {
-// All Payment Order Page Client Side Code Start
+  const { user, loading } = useAuth();
+  const axiosSecure = useAxiosSecure();
+  const [latestPayment, setLatestPayment] = useState(null);
+  const [error, setError] = useState(null);
 
-  // const {user , loading} = useAuth()
-  // const axiosSecure = useAxiosSecure();
-  // const [paymentData, setPaymentData] = useState(null);
-  // const [error, setError] = useState(null);
-  
-  // if(loading){
-  //   <LoadingSpinner />
-  // };
+  useEffect(() => {
+    if (!loading && user?.email) {
+      axiosSecure
+        .get(`/get-latest-payment?email=${user?.email}`)
+        .then((response) => {
+          console.log(response.data);
+          setLatestPayment(response.data);
+        })
+        .catch((error) => {
+          console.error("Error fetching latest payment:", error);
+          setError("Failed to load payment information");
+        });
+    }
+  }, [user, loading, axiosSecure]);
 
-//   useEffect(() => {
-//     axiosSecure.get(`/get-payments?email=${user?.email}`)
-//       .then(response => {
-//         console.log(response.data)
-//         setPaymentData(response.data);
-//       })
-//       .catch(error => {
-//         setError("Error fetching payment data");
-//         console.error(error);
-//       });
-//   }, [user]);
+  if (loading) {
+    return <LoadingSpinner />;
+  }
 
-// All Payment Order Page Client Side Code Endpoint
+  if (error) {
+    return <p>{error}</p>;
+  }
 
-// success payment api call Start:
-const {user , loading} = useAuth()
-const axiosSecure = useAxiosSecure();
-const [successPayments, setSuccessPayments] = useState([]);
-const [error, setError] = useState(null);
-
-if(loading){
-  <LoadingSpinner />
-};
-
-useEffect(() => {
-  const userEmail = user?.email;
-  axiosSecure.get(`/get-success-payments?email=${userEmail}`)
-    .then(data => {
-      console.log('seccess page 40:' , data.data[0]);
-      setSuccessPayments(data.data[0]);
-    })
-    .catch(error => {
-      setError("Error fetching successful payments");
-      console.error(error);
-    });
-}, [user , loading , axiosSecure]);
-  
   return (
     <div className="container mx-auto px-5">
       <div className="flex flex-col items-center justify-center min-h-screen">
-        <div className="flex flex-col md:w-[442px] md:h-[560px] border p-6 rounded text-center shadow">
+        <div className="flex flex-col md:w-[442px] md:h-[600px] border p-6 rounded text-center shadow">
           <h1 className=" text-center mb-5">
             <TiTick className="text-green-600 font-medium mx-auto text-7xl p-3 rounded-full shadow-lg" />
           </h1>
@@ -70,51 +50,70 @@ useEffect(() => {
           {/* Payment Info */}
           <div className="mb-5">
             <div className="flex justify-between items-center gap-2 mb-4">
-              <p className="text-[#717171] text-sm md:text-base font-light">
+              <p className="text-[#717171] text-sm md:text-base font-bold">
                 Payment Type:
               </p>
               <p className="text-[#505050] text-sm md:text-base font-light">
-                {successPayments?.paymentIssuer ? successPayments?.paymentIssuer : 'Data Not Found'}
+                {latestPayment?.paymentType
+                  ? latestPayment?.paymentType
+                  : "Data Not Found"}
               </p>
             </div>
             <div className="flex justify-between items-center gap-2 mb-4">
-              <p className="text-[#717171] text-sm md:text-base font-light">
+              <p className="text-[#717171] text-sm md:text-base font-bold">
+                Payment Issuer:
+              </p>
+              <p className="text-[#505050] text-sm md:text-base font-light">
+                {latestPayment?.paymentIssuer
+                  ? latestPayment?.paymentIssuer
+                  : "Data Not Found"}
+              </p>
+            </div>
+            <div className="flex justify-between items-center gap-2 mb-4">
+              <p className="text-[#717171] text-sm md:text-base font-bold">
                 Name :
               </p>
               <p className="text-[#505050] text-sm md:text-base font-light">
-              {successPayments?.customerName ? successPayments?.customerName : 'Data Not Found'}
+                {latestPayment?.customerName
+                  ? latestPayment?.customerName
+                  : "Data Not Found"}
               </p>
             </div>
             <div className="flex justify-between items-center gap-2 mb-4">
-              <p className="text-[#717171] text-sm md:text-base font-light">
+              <p className="text-[#717171] text-sm md:text-base font-bold">
                 Email :
               </p>
               <p className="text-[#505050] text-sm md:text-base font-light">
-              {successPayments?.customerEmail ? successPayments?.customerEmail : 'Data Not Found'}
+                {latestPayment?.customerEmail
+                  ? latestPayment?.customerEmail
+                  : "Data Not Found"}
               </p>
             </div>
             <div className="flex justify-between items-center gap-2 mb-4">
-              <p className="text-[#717171] text-sm md:text-base font-light">
+              <p className="text-[#717171] text-sm md:text-base font-bold">
                 Transaction Id :
               </p>
               <p className="text-[#505050] text-sm md:text-base font-light">
-              {successPayments?.paymentId ? successPayments?.paymentId : 'Data Not Found'}
+                {latestPayment?.paymentId.substring(0, 15)
+                  ? latestPayment?.paymentId.substring(0, 15)
+                  : "Data Not Found"}
+                ....
               </p>
             </div>
             <div className="flex justify-between items-center gap-2 mb-4">
-              <p className="text-[#717171] text-sm md:text-base font-light">
+              <p className="text-[#717171] text-sm md:text-base font-bold">
                 Amount Paid :
               </p>
               <p className="text-[#505050] text-sm md:text-base font-light">
-                ${successPayments?.amount ? successPayments?.amount : '00.0'}
+                ${latestPayment?.amount ? latestPayment?.amount : "00.0"}
               </p>
             </div>
             <div className="flex justify-between items-center gap-2 mb-4">
-              <p className="text-[#717171] text-sm md:text-base font-light">
+              <p className="text-[#717171] text-sm md:text-base font-bold">
                 Date :
               </p>
               <p className="text-[#505050] text-sm md:text-base font-light">
-                {successPayments?.timestamp? successPayments?.timestamp : 'Data Not Found'}
+                {new Date(latestPayment?.timestamp).toLocaleString()}
               </p>
             </div>
           </div>
