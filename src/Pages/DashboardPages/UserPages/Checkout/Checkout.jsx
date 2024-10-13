@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext } from "react";
 import { IoCartSharp } from "react-icons/io5";
 import { TbTruckDelivery } from "react-icons/tb";
 import { MdOutlinePayment } from "react-icons/md";
@@ -7,7 +7,6 @@ import CheckoutForm from "../../../../Components/Form/CheckoutForm";
 import { FaArrowLeft } from "react-icons/fa6";
 import CalculatedPrice from "../../../../Components/Shared/Price/CalculatedPrice";
 import GrandTotal from "../../../../Components/Shared/Price/GrandTotal";
-import MenuShoppingCartItem from "../../../../Components/MenuShoppingCart/MenuShoppingCartItem";
 import { AuthContext } from "../../../../Provider/AuthProvider";
 import MenuShoppingCart from "../../../../Components/MenuShoppingCart/MenuShoppingCart";
 
@@ -18,7 +17,7 @@ const Checkout = () => {
   const { cartProduct ,fetchCartDetails} = useContext(AuthContext);
   const { cart, totalPrice } = cartProduct;
 
-  
+    
   return (
     <div className="container mx-auto px-5">
       {/* Tabs */}
@@ -65,7 +64,6 @@ const Checkout = () => {
           {/* Divider */}
           <div className="divider"></div>
           {/* Shopping Carts Item */}
-          {/* <MenuShoppingCartItem cart={cart} /> */}
           <MenuShoppingCart />
           {/* Divider */}
           <div className="divider"></div>

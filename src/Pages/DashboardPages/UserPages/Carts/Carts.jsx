@@ -13,11 +13,7 @@ const Carts = () => {
   const { cartProduct ,fetchCartDetails} = useAuth();
   const { cart, totalPrice } = cartProduct;
   console.log('carts page 15:' ,  cart)
-
-  useEffect(() => {
-    fetchCartDetails()
-  }, [cart])
-
+  
   const location = useLocation();
   const isCarsPage = location?.pathname?.includes("carts");
   return (

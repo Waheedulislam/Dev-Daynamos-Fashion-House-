@@ -1,12 +1,24 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../../Provider/AuthProvider";
-import { FaEdit } from "react-icons/fa";
 import CheckoutFormModal from "../Shared/Modals/CheckoutFormModal";
+import { ShippingAddressContext } from "../../Provider/ShippingAddressProvider";
 
-const CheckoutForm = () => {
+
+const CheckoutForm = ({handleShippingFrom}) => {
   const { user } = useContext(AuthContext);
+  const { shippingAddress, updateShippingAddress } = useContext(ShippingAddressContext);
+
+  useEffect(() => {
+    console.log('Shipping Address on Checkout Page:', shippingAddress);
+  }, [shippingAddress]);
+
+  const handleShippingAddressChange = (e) => {
+    const newAddress = e.target.value;
+    updateShippingAddress(newAddress);
+  };
+  // console.log(inputAddress)
   return (
-    <form className="">
+    <form>
       <div className="form-control mb-8">
         <label className="label">
           <span className="label-text text-xl font-medium text-black">
@@ -33,6 +45,8 @@ const CheckoutForm = () => {
             placeholder="HubSpot, 25 First Street, Cambridge MA 02141, United States"
             name="shipTo"
             type="text"
+            value={shippingAddress}
+            onChange={handleShippingAddressChange}
             required
           />
           <span

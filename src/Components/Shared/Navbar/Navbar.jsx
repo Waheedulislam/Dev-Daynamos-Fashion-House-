@@ -16,7 +16,6 @@ import { toast } from "react-toastify";
 import useAdmin from "../../Hooks/useAdmin/useAdmin";
 import MenuShoppingCart from "../../MenuShoppingCart/MenuShoppingCart";
 
-
 const Navbar = () => {
   const { user, logOut, cartProduct } = useContext(AuthContext);
   const { cart, totalPrice } = cartProduct;
@@ -31,7 +30,6 @@ const Navbar = () => {
         console.log(error);
       });
   };
-
 
   return (
     <div className="container mx-auto">
@@ -91,6 +89,26 @@ const Navbar = () => {
                   )}
                 </li>
               ))}
+              {user && isAdmin && (
+                <NavLink
+                  className={({ isActive }) =>
+                    isActive ? "active" : "default"
+                  }
+                  to="/dashboard/admin-home"
+                >
+                  Dashboard
+                </NavLink>
+              )}
+              {user && !isAdmin && (
+                <NavLink
+                  className={({ isActive }) =>
+                    isActive ? "active" : "default"
+                  }
+                  to="/dashboard/personal-data"
+                >
+                  Dashboard
+                </NavLink>
+              )}
             </ul>
           </div>
           <Link to="/">
@@ -131,14 +149,17 @@ const Navbar = () => {
                   <NavLink to={item.path}>{item.name}</NavLink>
                 )}
               </li>
-
             ))}
-            {
-              user && isAdmin && <NavLink to='/dashboard/admin-home' >Dashboard</NavLink>
-            }
-            {
-              user && !isAdmin && <NavLink to='/dashboard/personal-data'>Dashboard</NavLink>
-            }
+            {user && isAdmin && (
+              <NavLink className="mt-2" to="/dashboard/admin-home">
+                Dashboard
+              </NavLink>
+            )}
+            {user && !isAdmin && (
+              <NavLink className="mt-2" to="/dashboard/personal-data">
+                Dashboard
+              </NavLink>
+            )}
           </ul>
         </div>
         <div className="navbar-end">
@@ -173,7 +194,9 @@ const Navbar = () => {
               onClick={() => document.getElementById("my_modal_5").showModal()}
             >
               <div className="indicator">
-                <span className="indicator-item badge badge-info">{cart?.length}</span>
+                <span className="indicator-item badge badge-info">
+                  {cart?.length}
+                </span>
                 <img src={bagIcon} alt="bag Icon" />
               </div>
             </button>
@@ -259,9 +282,9 @@ const Navbar = () => {
                       <Link to="/login">
                         <button
                           className=""
-                        // onClick={() =>
-                        //   document.getElementById("my_modal_6").showModal()
-                        // }
+                          // onClick={() =>
+                          //   document.getElementById("my_modal_6").showModal()
+                          // }
                         >
                           Sign In
                         </button>
@@ -277,7 +300,6 @@ const Navbar = () => {
                         </button> */}
                     </>
                   )}
-
                   <dialog
                     id="my_modal_6"
                     className="modal modal-center sm:modal-middle"
@@ -336,8 +358,4 @@ const navItems = [
     name: "About Us",
     path: "/aboutUs",
   },
-  // {
-  //   name: "Dashboard",
-  //   path: "/dashboard",
-  // },
 ];
