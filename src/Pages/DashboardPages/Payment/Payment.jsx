@@ -53,7 +53,7 @@ const Payment = () => {
     } catch (error) {
       console.error("Error clearing cart:", error);
     }
-  };
+  }
 
   // Function to handle payment creation
   const handleCreatePayment = async () => {
