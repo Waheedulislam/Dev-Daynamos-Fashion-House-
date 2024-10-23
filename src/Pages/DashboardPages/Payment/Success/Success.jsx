@@ -18,7 +18,6 @@ const Success = () => {
   const handleDownloadReceipt = async () => {
     try {
 
-
       // Send a request to generate the receipt
       const response = await axiosPublic.post("/api/generate-receipt", latestPayment, {
         responseType: "blob", // Important to handle binary response
