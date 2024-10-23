@@ -17,19 +17,7 @@ const Success = () => {
 
   const handleDownloadReceipt = async () => {
     try {
-      const transactionData = {
-        transactionId: "12345",
-        customer: {
-          name: "Omar Faruke",
-          phone: "(+880)1834815433",
-          email: "farukeomar@gmail.com",
-        },
-        items: [
-          { name: "Item Name 1", qty: 2, price: 50 },
-          { name: "Item Name 2", qty: 1, price: 30 },
-        ],
-        totalAmount: 80,
-      };
+
 
       // Send a request to generate the receipt
       const response = await axiosPublic.post("/api/generate-receipt", latestPayment, {
@@ -140,7 +128,7 @@ const Success = () => {
             >
               Download Receipt
             </button>
-            
+
             <Link to={`/dashboard/order-status/${latestPayment?.paymentId}`}>
               <button className="btn bg-blue-500 hover:bg-blue-600 border-0 text-white w-[187px] h-12 text-base">
                 Order Status
