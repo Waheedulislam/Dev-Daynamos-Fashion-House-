@@ -8,7 +8,7 @@ import { motion } from 'framer-motion'
 
 const Prebook = () => {
   return (
-    <section className="container mx-auto mb-12 my-28 px-4 sm:px-6 lg:px-8">
+    <section className="container mx-auto mb-12 my-32 px-4 sm:px-6 lg:px-8">
       <div className="grid grid-cols-1 lg:grid-cols-2 md:grid-cols-1 gap-6">
         {/* Image One */}
         <motion.div

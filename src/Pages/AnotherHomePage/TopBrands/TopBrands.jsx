@@ -9,7 +9,7 @@ import topBanner from '../../../assets/Photos/Product-Details/topBanner.png';
 
 const TopBrands = () => {
     return (
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8 ">
+        <div className="container mx-auto my-32 px-4 sm:px-6 lg:px-8 ">
             {/* Title Section */}
             <h1 className="text-3xl sm:text-4xl lg:text-5xl font-semibold mt-8">
                 Top Brands

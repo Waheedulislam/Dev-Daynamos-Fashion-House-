@@ -9,5 +9,6 @@ const useAxiosPublic = () => {
 }
 
 export default useAxiosPublic;
+
 // https://dev-daynamos-fashion-house-server.vercel.app
 // http://localhost:5000/

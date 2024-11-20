@@ -5,7 +5,7 @@ import line from "../../../assets/Line.png";
 const NewProductCard = ({ product }) => {
     return (
         <div>
-            <div className="w-full md:w-72 lg:w-full  shadow-xl hover:shadow-lg  transition-all rounded-xl p-4">
+            <div className="w-full md:w-72 lg:w-full  shadow-xl hover:shadow-2xl  transition-all rounded-xl p-4">
                 <Link to='/shop'>
                     <img
                         className="p-8 pb-0 w-[400px] rounded-t-lg transform transition-transform duration-300 hover:scale-110"

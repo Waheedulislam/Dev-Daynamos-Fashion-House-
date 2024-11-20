@@ -4,132 +4,122 @@ import "swiper/css";
 import "swiper/css/navigation";
 import { Navigation } from "swiper/modules";
 import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
-import img1 from "../../../assets/images/products/macbook.png";
 import { useQuery } from "@tanstack/react-query";
 
 const ProductOnSellSlider = () => {
   const prevRef = useRef(null);
   const nextRef = useRef(null);
 
-  // Get all products
-  const { data: products = [] } = useQuery({
-    queryKey: ['products'],
+  // Fetching products
+  const { data: products = [], isLoading } = useQuery({
+    queryKey: ["products"],
     queryFn: async () => {
-      const result = await axiosPublic.get('/products/all')
-      return result.data
-    }
-  })
-  console.log(products)
+      const result = await axiosPublic.get("/products/all");
+      return result.data;
+    },
+  });
+
+  // Placeholder skeleton loader
+  const skeletonArray = Array.from({ length: 5 });
+
   return (
     <div className="relative w-full">
-      <Swiper
-        // Responsiveness for Swiper based on screen size
-        slidesPerView={1}
-        spaceBetween={10}
-        breakpoints={{
-          640: {
-            slidesPerView: 2,
-            spaceBetween: 15,
-          },
-          768: {
-            slidesPerView: 3,
-            spaceBetween: 20,
-          },
-          1024: {
-            slidesPerView: 4,
-            spaceBetween: 20,
-          },
-          1280: {
-            slidesPerView: 5,
-            spaceBetween: 20,
-          },
-        }}
-        navigation={{
-          prevEl: prevRef.current, // Custom previous button
-          nextEl: nextRef.current, // Custom next button
-        }}
-        onSwiper={(swiper) => {
-          swiper.params.navigation.prevEl = prevRef.current;
-          swiper.params.navigation.nextEl = nextRef.current;
-          swiper.navigation.init();
-          swiper.navigation.update();
-        }}
-        modules={[Navigation]}
-        className="mySwiper"
-      >
-        {products?.map((pd) => (
-          <SwiperSlide key={pd._id}>
-            <div className="flex justify-center mr-2">
-              <div className="rounded-lg hover:transition h-[237px]  hover:ease-in hover:duration-300  lg:max-w-[184px]  bg-white overflow-hidden relative p-2 sm:w-auto ">
-                <div className=" absolute -top-2 -ml-2  rounded text-black ">
-                  {pd?.sellPrice ? (
-                    <>
-                      <div className="w-[50px] h-[32px]  px-[6px] bg-[#FDDBC9] py-[4px] mt-[10px] rounded-r-[8px]">
-                        <p className="text-[16px] font-light text-[#F45E0C]">
-                          {pd?.regularPrice > 0 &&
-                            Math.round(((pd?.regularPrice - pd?.sellPrice) / pd?.regularPrice) * 100) + "%"}
-                        </p>
-                      </div>
-                    </>
-                  ) : (
-                    <>
-                      <div className="w-[50px] h-[32px]  px-[6px]  py-[4px] mt-[10px] rounded-r-[8px]"></div>
-                    </>
-                  )}
-                </div>
-                {/* image  */}
-                <img
-                  src={pd.featureImage}
-                  alt='pd image'
-                  className="w-full object-cover h-[150px] sm:h-[130px]"
-                />
-                <h4 className="text-lg text-black font-light mt-2">
-                  {pd.name.length > 20
-                    ? pd.name.slice(0, 20) + "..."
-                    : pd.name}
-                </h4>
-                {/* price  */}
-
-                <div className="flex justify-between mt-2">
-                  {/* Display regular price only if it exists */}
-                  {pd?.regularPrice && (
-                    <p className="text-gray-500 line-through text-lg sm:text-xs">
-                      ${parseFloat(pd?.regularPrice).toFixed(2)}
-                    </p>
-                  )}
-
-                  {/* Display sell price if it exists; if not, just show regular price */}
-                  {pd?.sellPrice ? (
-                    <p className="text-black font-semibold text-sm sm:text-xs">
-                      ${parseFloat(pd?.sellPrice).toFixed(2)}
-                    </p>
-                  ) : (
-                    pd?.regularPrice && (
-                      <p className="text-black font-semibold text-sm sm:text-xs">
-                        ${parseFloat(pd?.regularPrice).toFixed(2)}
+      {/* Skeleton loaders */}
+      {isLoading ? (
+        <div className="flex gap-4 overflow-x-auto">
+          {skeletonArray.map((_, index) => (
+            <div
+              key={index}
+              className="flex flex-col gap-3 w-[184px] mr-2 bg-gray-100 rounded-lg animate-pulse p-4 shadow-sm"
+            >
+              <div className="h-[150px] bg-gray-300 rounded w-full"></div>
+              <div className="h-4 bg-gray-300 rounded w-[70%]"></div>
+              <div className="h-4 bg-gray-300 rounded w-full"></div>
+              <div className="h-4 bg-gray-300 rounded w-[80%]"></div>
+            </div>
+          ))}
+        </div>
+      ) : (
+        <Swiper
+          slidesPerView={1}
+          spaceBetween={15}
+          breakpoints={{
+            640: { slidesPerView: 2, spaceBetween: 15 },
+            768: { slidesPerView: 3, spaceBetween: 20 },
+            1024: { slidesPerView: 4, spaceBetween: 25 },
+            1280: { slidesPerView: 5, spaceBetween: 30 },
+          }}
+          navigation={{
+            prevEl: prevRef.current,
+            nextEl: nextRef.current,
+          }}
+          onBeforeInit={(swiper) => {
+            swiper.params.navigation.prevEl = prevRef.current;
+            swiper.params.navigation.nextEl = nextRef.current;
+          }}
+          modules={[Navigation]}
+          className="mySwiper"
+        >
+          {products.map((pd) => (
+            <SwiperSlide key={pd._id}>
+              <div className="flex justify-center ">
+                <div className="rounded-lg hover:transition h-[237px] hover:ease-in hover:duration-300 lg:max-w-[184px] bg-white overflow-hidden relative p-2 sm:w-auto ">
+                  {/* Discount Badge */}
+                  {pd?.sellPrice && (
+                    <div className="absolute top-2 left-2 rounded bg-red-100 px-2 py-1">
+                      <p className="text-xs text-red-600 font-bold">
+                        {pd?.regularPrice > 0 &&
+                          Math.round(
+                            ((pd?.regularPrice - pd?.sellPrice) /
+                              pd?.regularPrice) *
+                            100
+                          ) + "% OFF"}
                       </p>
-                    )
+                    </div>
                   )}
+                  {/* Product Image */}
+                  <img
+                    src={pd.featureImage}
+                    alt={pd.name || "Product"}
+                    className="w-full h-[150px] object-cover rounded"
+                  />
+                  {/* Product Name */}
+                  <h4 className="text-sm text-gray-800 mt-2 truncate font-medium">
+                    {pd.name}
+                  </h4>
+                  {/* Price */}
+                  <div className="flex justify-between items-center mt-3">
+                    {pd?.regularPrice && (
+                      <p className="text-xs text-gray-400 line-through">
+                        ${parseFloat(pd.regularPrice).toFixed(2)}
+                      </p>
+                    )}
+                    <p className="text-sm text-green-600 font-semibold">
+                      ${parseFloat(pd.sellPrice || pd.regularPrice).toFixed(2)}
+                    </p>
+                  </div>
                 </div>
               </div>
-            </div>
-          </SwiperSlide>
-        ))}
-      </Swiper>
+            </SwiperSlide>
+          ))}
+        </Swiper>
+      )}
 
-      {/* Custom position for navigation buttons */}
-      <div className="absolute bottom-2  lg:-bottom-14 right-2 z-10 flex items-center gap-2">
+      {/* Custom Navigation Buttons */}
+      <div className="absolute bottom-4 lg:-bottom-14 right-4 z-10 flex items-center gap-3">
         <button
           ref={prevRef}
-          className="btn btn-info swiper-button-prev-custom  shadow-lg text-black p-2 rounded-full cursor-pointer"
+          className="bg-gray-100 hover:bg-gray-200 shadow p-3 rounded-full cursor-pointer"
+          aria-label="Previous Slide"
         >
-          <IoIosArrowBack />
+          <IoIosArrowBack size={20} />
         </button>
         <button
           ref={nextRef}
-          className="btn btn-info swiper-button-next-custom  shadow-lg text-black p-2 rounded-full cursor-pointer"
+          className="bg-gray-100 hover:bg-gray-200 shadow p-3 rounded-full cursor-pointer"
+          aria-label="Next Slide"
         >
-          <IoIosArrowForward />
+          <IoIosArrowForward size={20} />
         </button>
       </div>
     </div>

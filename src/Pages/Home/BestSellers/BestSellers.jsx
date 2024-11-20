@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 
 const BestSellers = () => {
   return (
-    <section className="container mx-auto px-4  sm:px-6   mb-16">
+    <section className="container mx-auto px-4  sm:px-6   my-20">
       <>
         {/* Heading Section */}
         <div className="flex flex-col sm:flex-row justify-between items-center sm:items-end mt-8 mb-6">
