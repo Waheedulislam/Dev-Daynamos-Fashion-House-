@@ -21,7 +21,7 @@ import useAxiosPublic from "../../Components/Hooks/useAxiosPublic/useAxiosPublic
 import useAuth from "../../Components/Hooks/useAuth/useAuth";
 
 const Shop = () => {
-  const { user, fetchWishList, fetchCartDetailsz } = useAuth();
+  const { user, fetchWishList, fetchCartDetails } = useAuth();
 
   const userEmail = user?.email;
 
