@@ -30,7 +30,7 @@ const ProductOnSellSlider = () => {
           {skeletonArray.map((_, index) => (
             <div
               key={index}
-              className="flex flex-col gap-3 w-[184px] mr-2 bg-gray-100 rounded-lg animate-pulse p-4 shadow-sm"
+              className="flex flex-col gap-3 lg:w-[184px] mr-2 bg-gray-100 rounded-lg animate-pulse p-4 shadow-sm"
             >
               <div className="h-[150px] bg-gray-300 rounded w-full"></div>
               <div className="h-4 bg-gray-300 rounded w-[70%]"></div>

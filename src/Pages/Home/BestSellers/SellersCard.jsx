@@ -36,16 +36,6 @@ const SellersCard = () => {
         </div>
       ) :
       (
-        // <motion.div
-        //   variants={fadeIn('up', 0.2)}
-        //   initial='hidden'
-        //   whileInView={'show'}
-        //   viewport={{ once: false, amount: 0.4 }}
-        //   className="grid grid-cols-1 md:grid-cols-2 justify-items-center lg:grid-cols-4 gap-6">
-        //   {products?.slice(0, 4)?.map((product) => (
-        //     <ProductCard key={product._id} product={product} />
-        //   ))}
-        // </motion.div>
         <motion.div
           variants={fadeIn('up', 0.2)}
           initial='hidden'
