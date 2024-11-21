@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 const ProductCard = ({ product }) => {
   console.log(product)
   return (
-    <div className="w-full md:w-72 lg:w-full  shadow-xl rounded-xl hover:shadow-2xl transition-all  p-4">
+    <div className="w-80 md:w-80 lg:w-full  shadow-xl hover:shadow-2xl  transition-all rounded-xl p-4">
       <Link to='/shop'>
         <img
           className="p-8 pb-0 w-[400px] rounded-t-lg transform transition-transform duration-300 hover:scale-110"
@@ -15,9 +15,9 @@ const ProductCard = ({ product }) => {
         />
         <img className="p-2 rounded-t-lg" src={line} alt="product image" />
       </Link>
-      <h1 className="text-2xl mt-6"><span className="font-semibold">Name:</span>  <span className=" hover:text-blue-800 ">{product?.name?.slice(0, 20)}</span></h1>
+      <h1 className="text-xl mt-6"><span className="font-semibold">Name:</span>  <span className=" hover:text-blue-800 ">{product?.name?.slice(0, 20)}</span></h1>
       <div className="flex justify-between mb-2">
-        <p className="mt-8 text-[#717171] text-2xl"><span className=" font-semibold text-black">Price : </span>${product?.regularPrice}</p>
+        <p className="mt-8 text-[#717171] text-xl"><span className=" font-semibold text-black">Price : </span>${product?.regularPrice}</p>
         <p className="mt-8 text-2xl text-blue-600 font-semibold hover:text-blue-800  flex items-center gap-1">
           <FaStar />
           {product?.rate}

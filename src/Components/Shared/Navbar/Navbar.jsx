@@ -34,8 +34,8 @@ const Navbar = () => {
   };
 
   return (
-    <div className="container mx-auto ">
-      <div className="navbar bg-base-100">
+    <div className="container mx-auto  ">
+      <div className="navbar bg-gray-100  z-10 max-w-screen-xl bg-opacity-50  ">
         <div className="navbar-start">
           {/* Mobile Device s*/}
           <div className="dropdown">
@@ -118,7 +118,7 @@ const Navbar = () => {
           </Link>
         </div>
         {/* Desktop */}
-        <div className="navbar-center hidden lg:flex">
+        <div className="navbar-center hidden lg:flex ">
           <ul className="menu menu-horizontal px-1">
             {navItems.map((item) => (
               <li key={item.name} className="relative group">
@@ -164,7 +164,7 @@ const Navbar = () => {
             )}
           </ul>
         </div>
-        <div className="navbar-end">
+        <div className=" navbar-end">
           <div className="flex items-center space-x-4">
             {/* Search Button */}
 
@@ -219,9 +219,10 @@ const Navbar = () => {
               </div>
             </dialog>
             {/* close Modal */}
+
             {/* User Button */}
             <div className="dropdown dropdown-bottom dropdown-end">
-              <div tabIndex={0} role="button" className=" m-1">
+              <div tabIndex={0} role="button" className="m-1">
                 <img src={userIcon} alt="user Icon" />
               </div>
               <div

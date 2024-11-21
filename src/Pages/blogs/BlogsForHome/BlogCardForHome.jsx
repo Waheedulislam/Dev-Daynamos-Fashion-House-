@@ -127,11 +127,11 @@ const BlogCardForHome = () => {
           blogs.slice(1, 3).map((recentBlog) => (
             <Link to={`/blog/list/${recentBlog._id}`} key={recentBlog._id}>
               <motion.div
-                variants={fadeIn('left', 0.1)}
+                variants={fadeIn('up', 0.1)}
                 initial='hidden'
                 whileInView={'show'}
                 viewport={{ once: false, amount: 0.7 }}
-                className="flex bg-white shadow-md rounded-xl overflow-hidden hover:shadow-lg transition-all duration-300 my-2">
+                className="flex bg-white shadow-md rounded-xl overflow-hidden hover:shadow-lg transition-all duration-300 my-2 ">
                 <div className="w-1/3">
                   <img
                     src={recentBlog.imgSrc}
@@ -156,7 +156,7 @@ const BlogCardForHome = () => {
                       </span>
                     )}
                   </p>
-                  <div className="flex items-center text-sm text-gray-500">
+                  <div className="flex  items-center text-sm text-gray-500">
                     <svg
                       width="20"
                       height="20"

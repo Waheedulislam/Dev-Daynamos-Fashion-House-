@@ -31,7 +31,6 @@ const RecentPost = () => {
         }
       } catch (error) {
         console.error(error);
-        toast.error(error.message);
       } finally {
         setLoading(false);
       }
@@ -85,9 +84,8 @@ const RecentPost = () => {
                 </div>
                 <div className="col-span-8">
                   <h2
-                    className={`text-lg font-semibold ${
-                      blog.highlighted ? "text-orange-500" : "text-gray-800"
-                    }`}
+                    className={`text-lg font-semibold ${blog.highlighted ? "text-orange-500" : "text-gray-800"
+                      }`}
                   >
                     {blog.title}
                   </h2>

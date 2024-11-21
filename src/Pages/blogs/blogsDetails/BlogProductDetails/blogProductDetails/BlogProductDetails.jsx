@@ -20,7 +20,6 @@ const BlogProductDetails = () => {
         console.log(res.data);
         setBlog(res.data);
       } catch (error) {
-        toast.error(error.message);
       } finally {
         setLoading(false);
       }

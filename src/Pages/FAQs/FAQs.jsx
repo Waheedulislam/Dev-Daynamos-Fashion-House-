@@ -10,6 +10,9 @@ const FAQs = () => {
       <div className="mb-[32px]">
         <img src={faq} className="w-auto px-[5px]" alt="" />
       </div>
+      <div>
+
+      </div>
       <div className="px-[5px]">
         <div role="tablist" className="tabs tabs-bordered">
           <input
@@ -118,7 +121,7 @@ const FAQs = () => {
                     </p>
                   </div>
                 </div>
-                
+
               </div>
             </div>
           </div>
@@ -146,10 +149,10 @@ const FAQs = () => {
                     </p>
                   </div>
                 </div>
-                
-                
-                
-               
+
+
+
+
               </div>
             </div>
           </div>
@@ -191,9 +194,9 @@ const FAQs = () => {
                     </p>
                   </div>
                 </div>
-               
-                
-               
+
+
+
               </div>
             </div>
           </div>

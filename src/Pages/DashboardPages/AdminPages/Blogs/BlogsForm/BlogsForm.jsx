@@ -67,7 +67,7 @@ const BlogsForm = () => {
       })
       .catch((error) => {
         console.error("Error adding blog:", error);
-        toast.error("Failed to add blog");
+        // toast.error("Failed to add blog");
       });
   };
 

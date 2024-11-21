@@ -43,7 +43,7 @@ const BlogsDataFetch = () => {
       toast.success("Blog deleted successfully");
     } catch (error) {
       console.error("Error deleting blog:", error);
-      toast.error("Failed to delete blog");
+      // toast.error("Failed to delete blog");
     }
   };
 

@@ -19,7 +19,6 @@ const Pagination = () => {
       setTotalPages(res.data.totalPages);
     } catch (error) {
       console.error(error);
-      toast.error("Failed to fetch blogs");
     } finally {
       setLoading(false);
     }
@@ -81,11 +80,10 @@ const Pagination = () => {
               whileHover={{ scale: 1.1 }}
               whileTap={{ scale: 0.9 }}
               onClick={() => handlePageClick(number)}
-              className={`text-xl px-4 py-2 rounded-full ${
-                currentPage === number
+              className={`text-xl px-4 py-2 rounded-full ${currentPage === number
                   ? "bg-blue-500 text-white"
                   : "text-gray-500 hover:bg-gray-200"
-              } transition-all duration-300`}
+                } transition-all duration-300`}
             >
               {number}
             </motion.button>

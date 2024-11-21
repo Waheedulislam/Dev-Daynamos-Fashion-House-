@@ -21,28 +21,38 @@ const SellersCard = () => {
   return (
     isLoading ?
       (
-        <div className="flex gap-4 overflow-x-auto">
+        <div className=" grid grid-cols-1  md:grid-cols-2 lg:grid-cols-4 gap-2 mx-4">
           {skeletonArray.map((_, index) => (
             <div
               key={index}
-              className="flex flex-col gap-3 w-full h-full m-2 bg-gray-300 rounded-lg animate-pulse p-4 shadow-sm "
+              className="flex flex-col gap-3 w-full h-full m-2  rounded-lg animate-pulse p-4 shadow-md "
             >
-              <div className="h-[150px] bg-gray-200 rounded w-full"></div>
-              <div className="h-4 bg-gray-200 rounded w-[70%]"></div>
-              <div className="h-4 bg-gray-200 rounded w-full"></div>
-              <div className="h-4 bg-gray-200 rounded w-[80%]"></div>
+              <div className="h-[150px] bg-gray-300 rounded w-full"></div>
+              <div className="h-4 bg-gray-300  rounded w-[70%]"></div>
+              <div className="h-4 bg-gray-300  rounded w-full"></div>
+              <div className="h-4 bg-gray-300  rounded w-[80%]"></div>
             </div>
           ))}
         </div>
       ) :
       (
+        // <motion.div
+        //   variants={fadeIn('up', 0.2)}
+        //   initial='hidden'
+        //   whileInView={'show'}
+        //   viewport={{ once: false, amount: 0.4 }}
+        //   className="grid grid-cols-1 md:grid-cols-2 justify-items-center lg:grid-cols-4 gap-6">
+        //   {products?.slice(0, 4)?.map((product) => (
+        //     <ProductCard key={product._id} product={product} />
+        //   ))}
+        // </motion.div>
         <motion.div
           variants={fadeIn('up', 0.2)}
           initial='hidden'
           whileInView={'show'}
-          viewport={{ once: false, amount: 0.4 }}
-          className="grid grid-cols-1 md:grid-cols-2 justify-items-center lg:grid-cols-4 gap-6">
-          {products?.slice(0, 4)?.map((product) => (
+          viewport={{ once: false, amount: 0.2 }}
+          className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-4 justify-items-center gap-6">
+          {products.slice(0, 4).map((product) => (
             <ProductCard key={product._id} product={product} />
           ))}
         </motion.div>

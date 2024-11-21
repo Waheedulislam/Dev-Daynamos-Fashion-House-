@@ -24,7 +24,6 @@ const BlogCard = () => {
         setBlogs(res.data);
       } catch (error) {
         console.error("Error fetching blogs:", error);
-        toast.error("Failed to fetch blogs");
       } finally {
         setLoading(false);
       }
@@ -135,9 +134,8 @@ const BlogCard = () => {
                   </span>
                 </div>
                 <h2
-                  className={`card-title text-lg font-semibold ${
-                    blog._id === "2" ? "text-red-400" : ""
-                  }`}
+                  className={`card-title text-lg font-semibold ${blog._id === "2" ? "text-red-400" : ""
+                    }`}
                 >
                   {truncateWords(blog.title, 5)}
                 </h2>

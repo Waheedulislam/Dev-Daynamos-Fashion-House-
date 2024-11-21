@@ -62,8 +62,8 @@ const ProductOnSellSlider = () => {
         >
           {products.map((pd) => (
             <SwiperSlide key={pd._id}>
-              <div className="flex justify-center ">
-                <div className="rounded-lg hover:transition h-[237px] hover:ease-in hover:duration-300 lg:max-w-[184px] bg-white overflow-hidden relative p-2 sm:w-auto ">
+              <div className="flex justify-center lg:mt-1 mt-4">
+                <div className="rounded-lg hover:transition lg:h-[237px] hover:ease-in hover:duration-300 lg:max-w-[184px] bg-white overflow-hidden relative p-2  w-80 h-80 ">
                   {/* Discount Badge */}
                   {pd?.sellPrice && (
                     <div className="absolute top-2 left-2 rounded bg-red-100 px-2 py-1">
@@ -81,7 +81,7 @@ const ProductOnSellSlider = () => {
                   <img
                     src={pd.featureImage}
                     alt={pd.name || "Product"}
-                    className="w-full h-[150px] object-cover rounded"
+                    className="w-full lg:h-[150px] h-60  object-cover rounded"
                   />
                   {/* Product Name */}
                   <h4 className="text-sm text-gray-800 mt-2 truncate font-medium">
@@ -106,7 +106,7 @@ const ProductOnSellSlider = () => {
       )}
 
       {/* Custom Navigation Buttons */}
-      <div className="absolute bottom-4 lg:-bottom-14 right-4 z-10 flex items-center gap-3">
+      <div className="absolute -bottom-12 lg:-bottom-14 right-4 z-10 flex items-center gap-3">
         <button
           ref={prevRef}
           className="bg-gray-100 hover:bg-gray-200 shadow p-3 rounded-full cursor-pointer"

@@ -19,6 +19,7 @@ import Progress from "../../Components/Shared/Progress/Progress";
 
 import useAxiosPublic from "../../Components/Hooks/useAxiosPublic/useAxiosPublic";
 import useAuth from "../../Components/Hooks/useAuth/useAuth";
+import LoadingSpinner from "../../Components/Shared/LoadingSpiner/LoadingSpinner";
 
 const Shop = () => {
   const { user, fetchWishList, fetchCartDetails } = useAuth();
@@ -133,6 +134,7 @@ const Shop = () => {
 
   const fetchProducts = async () => {
     try {
+      // setLoading(true)
       // Construct the query parameters from the selected filters
       const params = {
         brands: selectedBrands.length > 0 ? selectedBrands.join(",") : undefined,

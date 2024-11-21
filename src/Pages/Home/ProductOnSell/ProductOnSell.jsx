@@ -5,8 +5,8 @@ import { Link } from "react-router-dom";
 
 const ProductOnSell = () => {
   return (
-    <section className="container mx-auto px-4 sm:px-6 lg:px-8 mb-12">
-      <div className="h-auto lg:h-[360px] bg-[#063A88] pr-2 pb-6 bg-opacity-90 w-full rounded-lg relative">
+    <section className="container mx-auto px-4 sm:px-6   lg:px-0 mb-12">
+      <div className="h-auto lg:h-[360px] bg-[#063A88] pr-2 pb-12 bg-opacity-90 w-full rounded-lg relative">
         {/* Background Img */}
         <div className="productOnSell"></div>
         {/* Content & Slider */}
