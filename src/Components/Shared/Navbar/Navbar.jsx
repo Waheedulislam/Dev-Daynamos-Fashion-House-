@@ -34,8 +34,8 @@ const Navbar = () => {
   };
 
   return (
-    <div className="container mx-auto  ">
-      <div className="navbar bg-gray-100  z-10 max-w-screen-xl bg-opacity-50  ">
+    <div className="container mx-auto  px-8">
+      <div className="navbar  ">
         <div className="navbar-start">
           {/* Mobile Device s*/}
           <div className="dropdown">
