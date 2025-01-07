@@ -4,6 +4,7 @@ import useAxiosPublic from "../../../Components/Hooks/useAxiosPublic/useAxiosPub
 import { useQuery } from "@tanstack/react-query";
 import { fadeIn } from '../../../variants'
 import { motion } from 'framer-motion'
+import axios from "axios";
 
 const SellersCard = () => {
   const axiosPublic = useAxiosPublic()
@@ -12,7 +13,8 @@ const SellersCard = () => {
   const { data: products = [], isLoading } = useQuery({
     queryKey: ['products'],
     queryFn: async () => {
-      const result = await axiosPublic.get('/products/all')
+      // const result = await axiosPublic.get('/products/all')
+      const result = await axios.get('../../../../public/products.json')
       return result.data
     }
   })

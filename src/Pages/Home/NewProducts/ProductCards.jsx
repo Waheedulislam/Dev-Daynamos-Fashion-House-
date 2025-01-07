@@ -5,6 +5,7 @@ import NewProductCard from "../../../Components/Shared/Cards/NewProductCard";
 
 import { fadeIn } from '../../../variants'
 import { motion } from 'framer-motion'
+import axios from "axios";
 
 const ProductCards = () => {
   const axiosPublic = useAxiosPublic();
@@ -13,7 +14,8 @@ const ProductCards = () => {
   const { data: products = [], refetch, isLoading } = useQuery({
     queryKey: ['products'],
     queryFn: async () => {
-      const result = await axiosPublic.get('/products/all');
+      // const result = await axiosPublic.get('/products/all');
+      const result = await axios.get('../../../../public/products.json');
       return result.data;
     }
   });
@@ -44,7 +46,7 @@ const ProductCards = () => {
           whileInView={'show'}
           viewport={{ once: false, amount: 0.2 }}
           className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-4 justify-items-center gap-6">
-          {products.slice(0, 4).map((product) => (
+          {products.slice(0, 4).reverse().map((product) => (
             <NewProductCard key={product._id} product={product} />
           ))}
         </motion.div>

@@ -5,6 +5,7 @@ import "swiper/css/navigation";
 import { Navigation } from "swiper/modules";
 import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
 import { useQuery } from "@tanstack/react-query";
+import axios from "axios";
 
 const ProductOnSellSlider = () => {
   const prevRef = useRef(null);
@@ -14,10 +15,12 @@ const ProductOnSellSlider = () => {
   const { data: products = [], isLoading } = useQuery({
     queryKey: ["products"],
     queryFn: async () => {
-      const result = await axiosPublic.get("/products/all");
+      // const result = await axiosPublic.get("/products/all");
+      const result = await axios.get("../../../../public/products.json");
       return result.data;
     },
   });
+  console.log(products)
 
   // Placeholder skeleton loader
   const skeletonArray = Array.from({ length: 5 });
